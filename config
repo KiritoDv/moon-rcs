@@ -1,3 +1,4 @@
+
 ;==========================================================
 ;
 ;
@@ -32,7 +33,7 @@ base-three = #d68e49
 base-four = #331e50
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:CMONITOR}
 width = 100%
 height = 30
 ;offset-x = 1%
@@ -62,7 +63,7 @@ font-0 = "Terminus:size=12:antialias=false;0"
 font-1 = "waffle:size=10;3"
 font-2 = "siji:size=10:antialias=true;0"
 
-modules-left = bspwm prev play-pause next
+modules-left = bspwm prev play-pause next song
 modules-center = 
 ; modules-right = 
 
@@ -108,6 +109,16 @@ content = ""
 format-prefix-foreground = #5b
 exec-if = pgrep -x spotify
 click-left = playerctl next
+
+[module/song]
+type = custom/script
+label = %output%
+interval = 0
+; format_background = #268bd2
+format-prefix-foreground = #5b
+exec = playerctl metadata xesam:title
+exec-if = pgrep -x spotify
+tail = true
 
 [module/bspwm]
 type = internal/bspwm
